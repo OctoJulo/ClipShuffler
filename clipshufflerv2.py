@@ -35,16 +35,17 @@ def listdirectory(path):
 def clipshuffler(listc,nb,asxfilepath):
 	print("\tShuffle")
 	items=listc.items()
-	ritems=random.shuffle(items)
+	# ritems=random.shuffle(items)
+	ritems=random.sample(items, nb)
 	oftmp=open(asxfilepath,"w")
 	oftmp.write('<ASX Version = "3.0" >\n\n')
-	for key, value in items:
-		# print key, value
+
+	for key, value in ritems:
 		oftmp.write('\t<Entry>\n\n\t\t<Title>')
 		oftmp.write(key)
 		oftmp.write('</Title>\n\n\t\t<Ref href = "')
 		oftmp.write(value)
-		oftmp.write('" />\n\n\t</Entry>\n\n')	
+		oftmp.write('" />\n\n\t</Entry>\n\n')
 	oftmp.write('</ASX>')
 	oftmp.close()
 	
